@@ -5,6 +5,7 @@ export const Wrapper = styled.form`
     display: flex;
     gap: ${theme.spacings.xxsmall};
     width: 100%;
+    height: 5.4rem;
     transform: translateY(-50%);
     color: ${theme.colors.gray100};
   `}
@@ -15,7 +16,7 @@ export const Input = styled.input`
     color: inherit;
     background-color: ${theme.colors.gray500};
     border-radius: ${theme.border.radius};
-    border: none;
+    border: hidden;
     font-size: ${theme.font.sizes.medium};
     padding: ${theme.spacings.small};
     outline: none;
@@ -25,7 +26,7 @@ export const Input = styled.input`
     }
 
     &:focus {
-      border: 1px solid ${theme.colors.purpleDark};
+      border: thin solid ${theme.colors.purpleDark};
     }
   `}
 `

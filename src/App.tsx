@@ -3,6 +3,7 @@ import { Container } from './components/Container'
 import Empty from './components/Empty'
 import Form from './components/Form'
 import Header from './components/Header'
+import Summary from './components/Summary'
 import Task, { TaskProps } from './components/Task'
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
       <Header />
       <Container>
         <Form />
+        <Summary total={tasks.length} />
         {tasks.length == 0 ? (
           <Empty />
         ) : (
