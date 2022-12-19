@@ -1,5 +1,6 @@
 import { Container } from './components/Container'
 import Empty from './components/Empty'
+import Form from './components/Form'
 import Header from './components/Header'
 
 const App = () => {
@@ -7,6 +8,7 @@ const App = () => {
     <>
       <Header />
       <Container>
+        <Form />
         <Empty />
       </Container>
     </>
