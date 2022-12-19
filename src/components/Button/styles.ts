@@ -5,7 +5,12 @@ import { ButtonProps } from '.'
 export type WrapperProps = { hasIcon: boolean } & Pick<ButtonProps, 'onlyIcon'>
 
 const wrapperModifiers = {
-  withIcon: () => css`
+  withIcon: (theme: DefaultTheme) => css`
+    padding: ${theme.spacings.small};
+    gap: ${theme.spacings.xxsmall};
+    font-size: ${theme.font.sizes.small};
+    font-weight: ${theme.font.bold};
+
     svg {
       width: 1.8rem;
     }
@@ -15,12 +20,12 @@ const wrapperModifiers = {
     background: none;
     color: ${theme.colors.gray300};
     height: max-content;
-    padding: ${theme.spacings.xxsmall};
-    transition: color 200ms ease-in-out;
+    padding: ${theme.spacings.xxxsmall};
+    transition: all ${theme.transition.fast};
 
     &:hover {
       color: ${theme.colors.danger};
-      background-color: ${theme.colors.gray400};
+      background: ${theme.colors.gray400};
     }
   `,
 
@@ -37,13 +42,9 @@ export const Wrapper = styled.button<WrapperProps>`
     color: inherit;
     display: flex;
     align-items: center;
-    gap: ${theme.spacings.xxsmall};
-    padding: ${theme.spacings.small};
     background-color: ${theme.colors.blueDark};
     outline: none;
     border: none;
-    font-size: ${theme.font.sizes.small};
-    font-weight: ${theme.font.bold};
     border-radius: ${theme.border.radius};
     cursor: pointer;
     transition: background ${theme.transition.fast};
@@ -52,7 +53,7 @@ export const Wrapper = styled.button<WrapperProps>`
       background-color: ${lighten(0.1, theme.colors.blueDark)};
     }
 
-    ${!!hasIcon && wrapperModifiers.withIcon()}
+    ${!!hasIcon && wrapperModifiers.withIcon(theme)}
     ${!!onlyIcon && wrapperModifiers.onlyIcon(theme)}
     ${!!disabled && wrapperModifiers.disabled()};
   `}

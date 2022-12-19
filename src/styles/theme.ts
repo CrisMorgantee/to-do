@@ -34,6 +34,7 @@ export default {
     danger: '#E25858',
   },
   spacings: {
+    xxxsmall: '0.4rem',
     xxsmall: '0.8rem',
     xsmall: '1.2rem',
     small: '1.6rem',
