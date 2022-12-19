@@ -1,5 +1,16 @@
+import { Container } from './components/Container'
+import Empty from './components/Empty'
+import Header from './components/Header'
+
 const App = () => {
-  return <h1>App</h1>
+  return (
+    <>
+      <Header />
+      <Container>
+        <Empty />
+      </Container>
+    </>
+  )
 }
 
 export default App
