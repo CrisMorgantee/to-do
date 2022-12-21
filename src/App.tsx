@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Container } from './components/Container'
 import Empty from './components/Empty'
 import Form from './components/Form'
@@ -7,27 +7,46 @@ import Summary from './components/Summary'
 import Task, { TaskProps } from './components/Task'
 
 const App = () => {
-  const [tasks, setTasks] = useState<TaskProps[]>([
-    {
-      title:
-        'Terminar o desafio 01 do curso da rocketseat, ignite trilha React',
-    },
-    {
-      title:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta quaerat dolore ut aperiam autem aspernatur nisi laudantium explicabo, exercitationem inventore quidem, fugit quod magni labore et debitis, neque fugiat odio!',
-    },
-  ])
+  const [tasks, setTasks] = useState<TaskProps[]>([])
+  const [doneAmount, setDoneAmount] = useState(0)
+
+  useEffect(() => {
+    const tasks = localStorage.getItem('tasks')
+    console.log('tasks: ', tasks)
+
+    if (tasks === null) return
+
+    setTasks(JSON.parse(tasks))
+  }, [])
+
+  useEffect(() => {
+    const done = tasks.reduce((acc, task) => {
+      task.isChecked == true ? acc++ : acc
+
+      return acc
+    }, 0)
+
+    setDoneAmount(done)
+  }, [tasks])
 
   return (
     <>
       <Header />
       <Container>
-        <Form />
-        <Summary total={tasks.length} />
+        <Form setTasks={setTasks} tasks={tasks} />
+        <Summary total={tasks.length} done={doneAmount} />
         {tasks.length == 0 ? (
           <Empty />
         ) : (
-          tasks.map(({ title }) => <Task key={title} title={title} />)
+          tasks.map(({ title, isChecked }) => (
+            <Task
+              key={title}
+              title={title}
+              isChecked={isChecked}
+              setTasks={setTasks}
+              tasks={tasks}
+            />
+          ))
         )}
       </Container>
     </>
