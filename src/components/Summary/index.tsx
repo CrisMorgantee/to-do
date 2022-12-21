@@ -1,10 +1,11 @@
 import * as S from './styles'
 
 export type SummaryProps = {
+  done: number
   total: number
 }
 
-const Summary = ({ total }: SummaryProps) => {
+const Summary = ({ total, done }: SummaryProps) => {
   return (
     <S.Wrapper>
       <S.Label>
@@ -14,7 +15,7 @@ const Summary = ({ total }: SummaryProps) => {
       <S.Label color="purple">
         Concluídas
         <span>
-          {total} de {total}
+          {done} de {total}
         </span>
       </S.Label>
     </S.Wrapper>
